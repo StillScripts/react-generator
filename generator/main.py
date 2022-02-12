@@ -24,26 +24,34 @@ def generate_file(file_type, file_path, file_name):
     file_path += f"{file_name}"
     completed_file_name = f'{file_name}{extension}'
     
-    # Create the folder for the specific 
-    check.check_or_make(file_path)
-    
-    # Create the file
-    write.create_file(
-        f"{file_path}/{completed_file_name}", 
-       get_template(file_type, file_name)
-    )
-    
-    # Create the provider file if making context
-    if (file_type == Files.CONTEXT):
+    if file_type == Files.PAGE:   
         write.create_file(
-            f"{file_path}/{file_name}Provider.tsx", 
-            get_template(Files.PROVIDER, file_name)
+            f"pages/{completed_file_name}", 
+            get_template(file_type, file_name)
         )
-    
-    # Add an index export file for components
-    if file_type in (Files.ATOM, Files.MOLECULE, Files.TEMPLATE, Files.PAGE):
-        write.create_file(f"{file_path}/index.ts", 'export { default } from ' + f'"./{file_name}";')
-    
+        
+    else: 
+        # Create the folder for the specific 
+        check.check_or_make(file_path)
+        
+        # Create the file
+        write.create_file(
+            f"{file_path}/{completed_file_name}", 
+           get_template(file_type, file_name)
+        )
+        
+        # Create the provider file if making context
+        if (file_type == Files.CONTEXT):
+            write.create_file(
+                f"{file_path}/{file_name}Provider.tsx", 
+                get_template(Files.PROVIDER, file_name)
+            )
+        
+        # Add an index export file for components
+        if file_type in (Files.ATOM, Files.MOLECULE, Files.TEMPLATE, Files.PAGE):
+            write.create_file(f"{file_path}/index.ts", 'export { default } from ' + f'"./{file_name}";')
+  
+
 def generator(file_type, file_names):
     path = ""
     if file_type == Files.PAGE:

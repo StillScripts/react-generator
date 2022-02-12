@@ -16,10 +16,12 @@ molecule_files = [
     "Project", "Testimonial", "TechnologyCard", "BlogCard", "Card", 
     "SocialLinks", "ContactForm", "Footer", "BlogArticle"
     ]
-template_files = ["Home", "Technology", "Blog", "BlogPost", "Contact"], 
+template_files = [
+    "Home", "Technology", "Blog", "BlogPost", "Contact"
+    ]
 page_files = ["Technology", "Blog", "Contact"]
 
-# Generate components for portfolio website
+# Generate components for portfolio website (example)
 generator(Files.ATOM, atom_files)
 generator(Files.MOLECULE, molecule_files)
 generator(Files.TEMPLATE, template_files)
