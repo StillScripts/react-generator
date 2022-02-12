@@ -8,13 +8,20 @@ Created on Mon Jan 24 10:47:45 2022
 from generator.main import generator
 from templates.file_types import Files
 
-generator(Files.ATOM, ["Resizer", "Row"])
-generator(Files.MOLECULE, ["Grid"])
-generator(Files.CONTEXT, ["Board"])
+atom_files = [
+    "BodyText", "Button", "CustomLink", "HeadingText", "Input", "Pill"
+    ]
+molecule_files = [
+    "Header", "Navbar", "Sidebar", "Hero", "SectionHeading", "Feature", 
+    "Project", "Testimonial", "TechnologyCard", "BlogCard", "Card", 
+    "SocialLinks", "ContactForm", "Footer", "BlogArticle"
+    ]
+template_files = ["Home", "Technology", "Blog", "BlogPost", "Contact"], 
+page_files = ["Technology", "Blog", "Contact"]
 
+# Generate components for portfolio website
+generator(Files.ATOM, atom_files)
+generator(Files.MOLECULE, molecule_files)
+generator(Files.TEMPLATE, template_files)
+generator(Files.PAGE, page_files)
 
-'''generator(Files.ATOM, ["Button", "PageLink", "Tab"])
-generator(Files.MOLECULE, ["NavBar", "Tabs"])
-generator(Files.TEMPLATE, ["Home", "Contact", "About"])
-generator(Files.PAGE, ["Home", "Contact", "About"])
-generator(Files.CONTEXT, ["Auth", "Form"])  '''
